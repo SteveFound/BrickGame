@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dehia1ruawvaw"]
+
+[ext_resource type="Texture2D" uid="uid://botjrec1rwgrg" path="res://assets/bricks/blue_64x32.png" id="1_dd6to"]
+[ext_resource type="Script" path="res://scripts/brick.gd" id="2_ynxbd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xts6e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j50n5"]
+size = Vector2(63, 30)
+
+[node name="Brick" type="RigidBody2D"]
+collision_layer = 8
+physics_material_override = SubResource("PhysicsMaterial_xts6e")
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("2_ynxbd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dd6to")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_j50n5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

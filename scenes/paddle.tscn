@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbhahdgmbr52c"]
+
+[ext_resource type="Script" path="res://scripts/paddle.gd" id="1_5v4om"]
+[ext_resource type="Texture2D" uid="uid://dxwbuqrfjkbvt" path="res://assets/paddle.png" id="2_4ms5l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yoaga"]
+size = Vector2(133, 29)
+
+[node name="Paddle" type="CharacterBody2D"]
+position = Vector2(70, -17)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_5v4om")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-136, 4)
+scale = Vector2(1.02344, 0.825)
+texture = ExtResource("2_4ms5l")
+centered = false
+region_rect = Rect2(0, 0, 128, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-70, 17.5)
+shape = SubResource("RectangleShape2D_yoaga")

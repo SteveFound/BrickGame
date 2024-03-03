@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://crqogbf7enqhk"]
+
+[ext_resource type="PackedScene" uid="uid://bbhahdgmbr52c" path="res://scenes/paddle.tscn" id="1_kgu1j"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_w1dag"]
+[ext_resource type="PackedScene" uid="uid://bjb8ansqng3pi" path="res://scenes/vwall.tscn" id="2_88vgi"]
+[ext_resource type="PackedScene" uid="uid://dsxeoewaiey1l" path="res://scenes/GUI.tscn" id="2_rrf3c"]
+[ext_resource type="PackedScene" uid="uid://ct50qj2bc3xnr" path="res://scenes/hwall.tscn" id="3_4c5do"]
+[ext_resource type="PackedScene" uid="uid://dxmru4xyp3kyj" path="res://scenes/ball.tscn" id="4_qtsr8"]
+[ext_resource type="Script" path="res://scripts/brick_spawner.gd" id="6_mtbx0"]
+[ext_resource type="PackedScene" uid="uid://dehia1ruawvaw" path="res://scenes/brick.tscn" id="7_tm0at"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_w1dag")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gui" parent="." instance=ExtResource("2_rrf3c")]
+
+[node name="Paddle" parent="." instance=ExtResource("1_kgu1j")]
+position = Vector2(69, 315)
+
+[node name="Ball" parent="." instance=ExtResource("4_qtsr8")]
+position = Vector2(-697, -6)
+speed = 700
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -313)
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="LeftWall" parent="Walls" instance=ExtResource("2_88vgi")]
+position = Vector2(-730, -3)
+gravity_scale = 0.0
+can_sleep = false
+freeze = true
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="RightWall" parent="Walls" instance=ExtResource("2_88vgi")]
+position = Vector2(733, 1)
+gravity_scale = 0.0
+can_sleep = false
+freeze = true
+max_contacts_reported = 1
+
+[node name="Ceiling" parent="Walls" instance=ExtResource("3_4c5do")]
+position = Vector2(9, -426)
+gravity_scale = 0.0
+can_sleep = false
+freeze = true
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="Floor" parent="Walls" instance=ExtResource("3_4c5do")]
+position = Vector2(-4, 592)
+gravity_scale = 0.0
+
+[node name="BrickSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("6_mtbx0")
+margin = Vector2(4, 4)
+brick_scene = ExtResource("7_tm0at")
+spawn_point = NodePath("../Marker2D")
+
+[connection signal="wall_destroyed" from="BrickSpawner" to="." method="_on_brick_spawner_wall_destroyed"]
