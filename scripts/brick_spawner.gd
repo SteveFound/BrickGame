@@ -9,6 +9,7 @@ const BRICK_WIDTH = 64
 const BRICK_HEIGHT = 32
 
 signal wall_destroyed
+signal hit_points(points)
 
 # How big the gap between each brick should be
 @export var margin: Vector2 = Vector2(8,8)
@@ -39,6 +40,7 @@ func spawn() :
 			brick.set_health(6)
 			brick.set_position(Vector2(x,y))
 			brick.brick_destroyed.connect( on_brick_destroyed)
+			brick.hit_points.connect( on_hit_points )
 			x += BRICK_WIDTH + margin.x
 		y += BRICK_HEIGHT + margin.y
 	brick_count = ROWS * COLUMNS
@@ -47,3 +49,6 @@ func on_brick_destroyed() :
 	brick_count -= 1
 	if( brick_count == 0):
 		wall_destroyed.emit()
+
+func on_hit_points(points) :
+	hit_points.emit(points)

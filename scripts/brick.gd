@@ -2,6 +2,7 @@ class_name Brick
 extends RigidBody2D
 
 signal brick_destroyed
+signal hit_points(score)
 
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var sprite_2d = $Sprite2D
@@ -34,6 +35,7 @@ func set_health( value : int) :
 # Decrement the health of the brick. If it reaches 0, erase the brick and
 # stop registering collisions
 func decrease_health() :
+	hit_points.emit(10)
 	if( health > 0 ) :
 		health -= 1
 		sprite_2d.texture = textures[health]
@@ -51,3 +53,4 @@ func fade_out() :
 func destroyed() :
 	queue_free()
 	brick_destroyed.emit()	
+

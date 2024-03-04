@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsxeoewaiey1l"]
+[gd_scene load_steps=3 format=3 uid="uid://dsxeoewaiey1l"]
 
+[ext_resource type="Script" path="res://scripts/GUI.gd" id="1_1v37e"]
 [ext_resource type="Texture2D" uid="uid://bd2peqstwdn28" path="res://assets/red_heart.png" id="1_y2hts"]
 
-[node name="Gui" type="Node"]
+[node name="Gui" type="Node2D"]
+script = ExtResource("1_1v37e")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -31,7 +33,7 @@ layout_mode = 2
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Score" type="Label" parent="CanvasLayer/PanelContainer2/MarginContainer/GridContainer"]
+[node name="score_label" type="Label" parent="CanvasLayer/PanelContainer2/MarginContainer/GridContainer"]
 layout_mode = 2
 tooltip_text = "Score"
 mouse_filter = 0
@@ -45,7 +47,7 @@ texture = ExtResource("1_y2hts")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Lives" type="Label" parent="CanvasLayer/PanelContainer2/MarginContainer/GridContainer"]
+[node name="lives_label" type="Label" parent="CanvasLayer/PanelContainer2/MarginContainer/GridContainer"]
 layout_mode = 2
 tooltip_text = "Lives"
 mouse_filter = 0

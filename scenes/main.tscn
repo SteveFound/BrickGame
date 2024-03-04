@@ -62,4 +62,5 @@ margin = Vector2(4, 4)
 brick_scene = ExtResource("7_tm0at")
 spawn_point = NodePath("../Marker2D")
 
+[connection signal="hit_points" from="BrickSpawner" to="Gui" method="_on_brick_spawner_hit_points"]
 [connection signal="wall_destroyed" from="BrickSpawner" to="." method="_on_brick_spawner_wall_destroyed"]
