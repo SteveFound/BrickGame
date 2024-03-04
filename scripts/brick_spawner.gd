@@ -26,7 +26,7 @@ func spawn() :
 	# Calculate the width of a row in pixels
 	var row_width = (BRICK_WIDTH * COLUMNS) +(margin.x * (COLUMNS - 1))
 	# The first brick is drawn at the marker point - half the width
-	var spawn_x = -(row_width + BRICK_WIDTH + margin.x) / 2
+	var spawn_x = spawn_point.position.x - (row_width + BRICK_WIDTH + margin.x) / 2
 	var spawn_y = spawn_point.position.y
 
 	var y = spawn_y
